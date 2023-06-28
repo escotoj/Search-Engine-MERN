@@ -10,5 +10,13 @@ Fully functioning Google Books API search engine built with a RESTful API, refac
 - Modify the existing authentication middleware so that it works in the context of a GraphQL API.
 - Create an Apollo Provider so that requests can communicate with an Apollo Server.
 - Deploy the application to Heroku.
+ 
+- replace controllers, routes and with schemas models
+
 
 ### DONE
+
+- npm i apollo
+- apollo set up in server.js (used to call the typedef and resolvers)
+- schemas is created, index (filled), resolver and typedef are created
+- books schema is in user.js called in index.js

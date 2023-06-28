@@ -8,6 +8,8 @@ const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+
+// add files for each
 const server = new ApolloServer({
   typeDefs,
   resolvers
