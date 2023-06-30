@@ -6,26 +6,31 @@ const expiration = '2h';
 
 module.exports = {
   // function for our authenticated routes
-  authMiddleware: function (req, res, next) {
+  // change req and res to context *****
+  authMiddleware: function (context, next) {
     // allows token to be sent via  req.query or headers
     let token = req.query.token || req.headers.authorization;
 
     // ["Bearer", "<tokenvalue>"]
-    if (req.headers.authorization) {
+    // context added ****
+    if (context.req.headers.authorization) {
       token = token.split(' ').pop().trim();
     }
 
     if (!token) {
-      return res.status(400).json({ message: 'You have no token!' });
+      throw new Error('You have no Token!');
+      // return res.status(400).json({ message: 'You have no token!' });
     }
 
     // verify token and get user data out of it
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
-      req.user = data;
+// context added *******
+      context.req.user = data;
     } catch {
       console.log('Invalid token');
-      return res.status(400).json({ message: 'invalid token!' });
+      // throw error added instead of res
+      throw new Error('Invalid Token!');
     }
 
     // send to next endpoint

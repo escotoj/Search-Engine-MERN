@@ -12,6 +12,8 @@ Fully functioning Google Books API search engine built with a RESTful API, refac
 - Deploy the application to Heroku.
  
 - replace controllers, routes and with schemas models
+- add signToken to Auth.js and apply to login. use 21-JWT
+
 
 
 ### DONE
@@ -20,3 +22,5 @@ Fully functioning Google Books API search engine built with a RESTful API, refac
 - apollo set up in server.js (used to call the typedef and resolvers)
 - schemas is created, index (filled), resolver and typedef are created
 - books schema is in user.js called in index.js
+- typedefs have been added based off User.js
+- resolvers are set up for function to be added
