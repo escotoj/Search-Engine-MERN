@@ -1,5 +1,5 @@
 const { ApolloServer } = require('apollo-server-express')
-
+const { typeDefs, resolvers } = require("./schemas");
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
@@ -14,6 +14,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers
 });
+
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

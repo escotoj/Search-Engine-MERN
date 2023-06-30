@@ -27,7 +27,7 @@ const resolver = {
   },
 
   User: {
-    e,
+    
   },
 };
 
