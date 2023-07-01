@@ -1,5 +1,6 @@
 // resolvers is for the query
 
+const bookSchema = require("../models/Book");
 const { User } = require("../models/index");
 
 const resolver = {
@@ -12,15 +13,22 @@ const resolver = {
   Mutation: {
     login: async (root, { email, password }) => {
         console.log("LOGIN");
-        return await User.findById({email, password})
+        const user = await User.findById({email, password});
+        return user;
+
     },
   },
     addUser: async (root, { username, email, password }) => {
-        return await User.findByIdAndUpdate({username})
-    console.log("ADDUSER");
+      console.log("ADDUSER");
+      const user = new User({ username, email, password });
+      await user.save();
+      return user;
   },
     saveBook: async (root, { input }) => {
     console.log("SAVEBOOK");
+    const book = new User(bookSchema);
+    await book.save();
+    return book;
   },
     removeBook: async (root, { bookId }) => {
     console.log("DELETE");
