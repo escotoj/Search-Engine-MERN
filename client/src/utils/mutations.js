@@ -20,20 +20,18 @@ export const ADD_USER = gql`
   }
 `
 export const SAVE_BOOK = gql`
-mutation saveBook($email: String!, $password: String!) {
-    saveBook(email: $email, $password: String) {
+mutation saveBook($bookId: _id!) {
+    saveBook($bookId: _id!, title: $title) {
     _id
-    email
-    password
+    title
   }
 }
 `
 export const REMOVE_BOOK = gql`
-mutation removeBook($email: String! $password: String!) {
-    removeBook(email: $email $password: String) {
-    _id
-    email
-    password
-  }
+mutation removeBook($bookId: _id!) {
+  removeBook($bookId: _id!, title: $title) {
+  _id
+  title
+}
 }
 `;
