@@ -12,8 +12,9 @@ Fully functioning Google Books API search engine built with a RESTful API, refac
 ### TODO
 
 Client (front end)
-- Mutations and Queries need to be tested.
-- each mutation needs to filled out properly
+- Mutations and Queries (TEST).
+- each mutation needs to filled (TEST)
+- SignUp form broke 
 
 SavedBooks.js: `Remove the useEffect() Hook that sets the state for UserData.`
 
@@ -26,7 +27,7 @@ SignupForm.js: `Replace the addUser() functionality imported from the API file w
 LoginForm.js: `Replace the loginUser() functionality imported from the API file with the LOGIN_USER mutation functionality.`
 
 Server - (back end)
-- resolvers functions for add user and save and remove book   
+- resolvers functions for add user and save and remove book (TEST)  
 
 
  
