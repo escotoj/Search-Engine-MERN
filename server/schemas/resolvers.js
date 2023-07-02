@@ -13,28 +13,51 @@ const resolver = {
   Mutation: {
     login: async (root, { email, password }) => {
         console.log("LOGIN");
-        const user = await User.findById({email, password});
-        return user;
+        const user = await User.findOne({ email });
 
-    },
-  },
+        if (!user) {
+          throw new AuthenticationError('No user with this email found!');
+        }
+  
+        const correctPw = await user.isCorrectPassword(password);
+  
+        if (!correctPw) {
+          throw new AuthenticationError('Incorrect password!');
+        }
+  
+        const token = signToken(user);
+        return { token, user };
+      },
+
     addUser: async (root, { username, email, password }) => {
       console.log("ADDUSER");
-      const user = new User({ username, email, password });
-      await user.save();
-      return user;
+      const user = await User.create({ username, email, password });
+      const token = signToken(user);
+
+      return { token, user };
   },
     saveBook: async (root, { input }) => {
     console.log("SAVEBOOK");
-    const book = new User(bookSchema);
-    await book.save();
-    return book;
+    const user = {_id};
+    const updatedUser = User.findByIdAndUpdate(user, { $push: { savedBooks: input } }, { new: true });
+    return updatedUser;
   },
     removeBook: async (root, { bookId }) => {
-    console.log("DELETE");
+      console.log("DELETE");
+      return User.findOneAndUpdate(
+        { _id: _id },
+        { $pull: { savedBooks: {bookId} } },
+        { new: true })
+  
   },
+},
 
   User: {
+    _id: (root) => root._id,
+    username: (root) => root.username,
+    email: (root) => root.email,
+    bookCount: (root) => root.savedBooks.length,
+    savedBooks: (root) => root.savedBooks
     
   },
 };
