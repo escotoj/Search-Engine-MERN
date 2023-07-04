@@ -11,27 +11,18 @@ Fully functioning Google Books API search engine built with a RESTful API, refac
 
 ### TODO
 
+- SavedBooks.js: `Remove the useEffect() Hook that sets the state for UserData.`
+Instead, use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData.
+
+- RemoveBook Use the useMutation() Hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function that's imported from API file. (Make sure you keep the removeBookId() function in place!)
+
+
 Client (front end)
 - Mutations and Queries (TEST).
 - each mutation needs to filled (TEST)
-- SignUp form broke 
-
-SavedBooks.js: `Remove the useEffect() Hook that sets the state for UserData.`
-
-Instead, use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData.
-
-Use the useMutation() Hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function that's imported from API file. (Make sure you keep the removeBookId() function in place!)
-
-SignupForm.js: `Replace the addUser() functionality imported from the API file with the ADD_USER mutation functionality.`
-
-LoginForm.js: `Replace the loginUser() functionality imported from the API file with the LOGIN_USER mutation functionality.`
 
 Server - (back end)
 - resolvers functions for add user and save and remove book (TEST)  
-
-
- 
-
 
 
 ### DONE
@@ -43,3 +34,5 @@ Server - (back end)
 - typedefs have been added based off User.js
 - resolvers are set up for function to be added
 - App.js: Create an Apollo Provider to make every request work with the Apollo server SearchBooks.js: Use the Apollo useMutation() Hook to execute the SAVE_BOOK mutation in the handleSaveBook() function instead of the saveBook() function imported from the API file.
+- SignupForm.js: `Replace the addUser() functionality imported from the API file with the ADD_USER mutation functionality.`
+- LoginForm.js: `Replace the loginUser() functionality imported from the API file with the LOGIN_USER mutation functionality.`
