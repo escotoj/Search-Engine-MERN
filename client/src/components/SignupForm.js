@@ -37,8 +37,11 @@ const SignupForm = () => {
     }
     try {
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: {
+          ...userFormData
+        },
       });
+      console.log(data);
 
       //removing the current function to replace with addme graphql
     // try {
