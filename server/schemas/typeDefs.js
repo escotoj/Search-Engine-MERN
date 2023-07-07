@@ -13,35 +13,25 @@ const { gql } = require("apollo-server-express");
 // removeBook is similar to a DELETE request.
 
 const typeDefs = gql`
-  type Query {
-    me: User
-  }
-  type Mutation {
-    login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(input: SaveBookInput!): User
-    removeBook(bookId: String!): User
-  }
-
   type User {
-    _id: ID
-    username: String
-    email: String
+    _id: ID!
+    username: String!
+    email: String!
     bookCount: Int
     savedBooks: [Book]
   }
 
   type Book {
-    bookId: Int
+    bookId: Int!
     authors: [String]
-    description: String
-    title: String
+    description: String!
+    title: String!
     image: String
     link: String
   }
 
   type Auth {
-    token: String
+    token: ID!
     user: User
   }
 
@@ -52,6 +42,17 @@ const typeDefs = gql`
     bookId: String
     image: String
     link: String
+  }
+
+  type Query {
+    me: User
+  }
+
+  type Mutation {
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    saveBook(input: SaveBookInput!): User
+    removeBook(bookId: String!): User
   }
 `;
 
