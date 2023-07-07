@@ -7,14 +7,7 @@ export const GET_ME = gql`
       username
       email
       bookCount
-      savedBooks {
-        bookId
-        authors
-        description
-        title
-        image
-        link
-      }
+      savedBooks[Book]
     }
   }
 `;
