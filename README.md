@@ -11,18 +11,8 @@ Fully functioning Google Books API search engine built with a RESTful API, refac
 
 ### TODO
 
-- SavedBooks.js: `Remove the useEffect() Hook that sets the state for UserData.`
-Instead, use the useQuery() Hook to execute the GET_ME query on load and save it to a variable named userData.
-
-- RemoveBook Use the useMutation() Hook to execute the REMOVE_BOOK mutation in the handleDeleteBook() function instead of the deleteBook() function that's imported from API file. (Make sure you keep the removeBookId() function in place!)
-
-
-Client (front end)
-- Mutations and Queries (TEST).
-- each mutation needs to filled (TEST)
-
-Server - (back end)
-- resolvers functions for add user and save and remove book (TEST)  
+SaveBook button does not work - PUT error 
+RemoveBook needs to be tested.
 
 
 ### DONE
