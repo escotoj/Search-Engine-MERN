@@ -25,7 +25,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 
 const client = new ApolloClient({
-  uri: 'http://10.0.0.237:3000/SignupForm',
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 

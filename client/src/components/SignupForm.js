@@ -4,7 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 // import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER, CREATE_USER } from '../utils/mutations';
 
 import { useMutation } from '@apollo/client';
 
@@ -39,18 +39,6 @@ const SignupForm = () => {
       const { data } = await addUser({
         variables: { ...userFormData },
       });
-
-      //removing the current function to replace with addme graphql
-    // try {
-    //   const response = await createUser(userFormData);
-// no need for json resonse 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
-
-      // const { token, user } = await response.json();
-      // console.log(user);
-
 
       Auth.login(data.addUser.token);
     } catch (err) {
