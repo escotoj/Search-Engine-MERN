@@ -7,7 +7,7 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     me: async (root, args, context) => {
-      console.log(context);
+      console.log("context", context);
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select("-__v -password")
@@ -17,8 +17,8 @@ const resolvers = {
       }
       // function for this field would implement the logic to fetch the current user from a database or any other data source.
       // return await User.findOne(_id);
-      console.error("User not logged in");
-      throw new AuthenticationError("User not logged in");
+      console.error("User not logged in 2");
+      // throw new AuthenticationError("User not logged in");
     },
   },
   Mutation: {

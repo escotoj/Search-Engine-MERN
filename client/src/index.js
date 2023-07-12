@@ -20,37 +20,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import SignupForm from '../src/components/SignupForm';
 
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-
-import { setContext } from '@apollo/client/link/context';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
 
 
-// const client = new ApolloClient({
-//   uri: '/graphql',
-//   cache: new InMemoryCache(),
-// });
-
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-// create auth link
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    }
-  }
-});
-
-// client instance
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  uri: '/graphql',
   cache: new InMemoryCache(),
 });
 
