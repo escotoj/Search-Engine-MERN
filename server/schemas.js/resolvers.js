@@ -17,8 +17,8 @@ const resolvers = {
       }
       // function for this field would implement the logic to fetch the current user from a database or any other data source.
       // return await User.findOne(_id);
-      console.error("User not logged in 2");
-      // throw new AuthenticationError("User not logged in");
+      // console.error("User not logged in 2");
+      throw new AuthenticationError("User not logged in");
     },
   },
   Mutation: {
