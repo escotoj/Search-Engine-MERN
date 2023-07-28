@@ -1,40 +1,40 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import './index.css';
 import App from './App';
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
-
-
-
+import createRoot from 'react-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import SignupForm from '../src/components/SignupForm';
+import auth from './utils/auth';
+import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3001/graphql',
+});
 
+const authLink = setContext((_, { headers }) => {
+  const token = auth.getToken();
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
 
+// Create the Apollo Client instance
 const client = new ApolloClient({
-  uri: '/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
-
-ReactDOM.render(
-  <ApolloProvider client={client}>
-<App />
-    {/* <SignupForm /> */}
+createRoot.render(
+  <ApolloProvider client={client}> 
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
   </ApolloProvider>,
   document.getElementById('root')
 );
+
 
