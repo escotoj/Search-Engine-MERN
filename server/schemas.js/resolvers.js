@@ -61,28 +61,29 @@ const resolvers = {
       }
       throw new AuthenticationError("Must be Logged In for such thing");
     },
-    removeBook: async (root, { bookId }, context) => {
+    removeBook: async (root, {bookId}, context) => {
       console.log("DELETE");
       if (context.user) {
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedBooks: { bookId } } },
+          { $pull: { savedBooks:  { bookId: bookId }  } },
           { new: true }
         );
+        console.log(updatedUser)
         return updatedUser;
       }
       throw new AuthenticationError("Must be Logged In for such thing");
     },
   },
 
-  // User: {
-  //   _id: (root) => root._id,
-  //   username: (root) => root.username,
-  //   email: (root) => root.email,
-  //   bookCount: (root) => root.savedBooks.length,
-  //   savedBooks: (root) => root.savedBooks
+  User: {
+    _id: (root) => root._id,
+    username: (root) => root.username,
+    email: (root) => root.email,
+    bookCount: (root) => root.savedBooks.length,
+    savedBooks: (root) => root.savedBooks
 
-  // },
+  },
 };
 
 module.exports = resolvers;
