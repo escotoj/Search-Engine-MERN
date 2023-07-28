@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
       resave: false,
       saveUninitialized: true,
       store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI,
+        mongoUrl: process.env.DB_URI,
       }),
       cookie: {
         maxAge: 1000 * 60 * 60 * 24, // 1 day
